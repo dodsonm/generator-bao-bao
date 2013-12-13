@@ -1,0 +1,53 @@
+# Compiled Files #
+##################
+*.pyc
+*.egg*
+*.bak
+*.DS_Store
+
+
+# IDE Files #
+#############
+*.kpf
+.idea
+\#*
+.\#*
+.project
+.pydevproject
+.settings
+*.swp
+
+# Virtual Environments #
+########################
+ve/
+
+data/
+
+# Django Media #
+################
+# Ignore collected static media files.
+learning_media/learning_media/static/
+
+# Ignore uploaded media.
+learning_media/learning_media/media/
+
+# linter config files #
+#######################
+.pyflymakerc
+.pyflymakercc
+
+# user scripts #
+################
+/reset.sh
+
+# nose test data #
+##################
+.noseids
+
+# coverage #
+############
+.coverage
+
+# node_modules #
+################
+node_modules
