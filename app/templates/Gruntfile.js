@@ -5,28 +5,51 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    /**
-     * For compiling the less files
+
+    /** grunt-contrib-less
+     *
      */
     less: {
-    /**
-     * For watching changes on file save
-     */
       "<%= djangoApp %>": {
         files: {
           '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/css/main.css' :
-          '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/less/main.less'
+          'less/main.less'
         }
       }
     },
+    /** grunt-swig
+     *
+     * JavaScript template engine. Uses Django template syntax and renders
+     * against JSON instead of Python dicts.
+     *
+     */
+    swig: {
+      development: {
+        init: {
+            autoescape: true
+        },
+        dest: "<%= WEB_ROOT %>",
+        src: [
+          'templates/**/*.swig',
+          '!templates/includes/**',
+          '!templates/base.swig'
+        ]
+      }
+    },
+    /** grunt-contrib-watch
+     *
+     */
     watch: {
       "<%= djangoApp %>": {
-        files: '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/less/*.less',
+        files: 'less/*.less',
         tasks: 'less:<%= djangoApp %>'
       }
     },
-    /**
-     * For live reloading the css and js
+    /** grunt-browser-sync
+     *
+     * For live css and js injection w/o triggering apage reload. Always keep
+     * below grunt-contrib-watch.
+     *
      */
     browser_sync: {
         files: {
@@ -44,7 +67,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.loadNpmTasks('grunt-swig');
 
-  grunt.registerTask('default', ["browser_sync", "watch"]);
+  grunt.registerTask('default', ["less", "swig"]);
+  grunt.registerTask('track', ["watch", "browser_sync"]);
 
 };

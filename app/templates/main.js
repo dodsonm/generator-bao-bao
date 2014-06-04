@@ -7,5 +7,5 @@
  */
 (function () {
     'use strict';
-    console.log('[Main instantiated] %s', <%= djangoApp %>);
+    console.log('[Main instantiated] <% print(djangoApp.toUpperCase()) %>');
 }());

@@ -14,8 +14,8 @@ var BaoBaoGenerator = module.exports = function BaoBaoGenerator(args, options, c
   });
 
   this.pkg = JSON.parse(this.readFileAsString(path.join(__dirname, '../package.json')));
-  this.WEB_ROOT = 'website';
-  this.STATIC_URL = '/static/';
+  this.WEB_ROOT = 'website/';
+  this.STATIC_URL = 'static/';
 };
 
 util.inherits(BaoBaoGenerator, yeoman.generators.Base);
@@ -40,6 +40,9 @@ BaoBaoGenerator.prototype.askFor = function askFor() {
 };
 
 BaoBaoGenerator.prototype.app = function app() {
+  this.mkdir('less');
+  this.mkdir('templates');
+  this.mkdir('templates/includes');
   this.mkdir(this.WEB_ROOT);
   this.mkdir(this.WEB_ROOT);
   this.mkdir(this.WEB_ROOT + this.STATIC_URL);
@@ -47,14 +50,15 @@ BaoBaoGenerator.prototype.app = function app() {
   this.mkdir(this.WEB_ROOT + this.STATIC_URL + this.djangoApp + '/css');
   this.mkdir(this.WEB_ROOT + this.STATIC_URL + this.djangoApp + '/img');
   this.mkdir(this.WEB_ROOT + this.STATIC_URL + this.djangoApp + '/js');
-  this.mkdir(this.WEB_ROOT + this.STATIC_URL + this.djangoApp + '/less');
 
   this.template('Gruntfile.js', 'Gruntfile.js');
+  this.template('global.json', 'global.json');
   this.template('_bower.json', 'bower.json');
   this.template('_config.json', 'config.json');
   this.template('_package.json', 'package.json');
-  this.template('index.html', this.WEB_ROOT + '/index.html');
-  this.template('main.less', this.WEB_ROOT + this.STATIC_URL + this.djangoApp + '/less/main.less');
+  this.template('index.swig', 'templates/index.swig');
+  this.template('main.less', 'less/main.less');
+  this.template('main.js', this.WEB_ROOT + this.STATIC_URL + this.djangoApp + '/js/main.js');
 };
 
 BaoBaoGenerator.prototype.projectfiles = function projectfiles() {
