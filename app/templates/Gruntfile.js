@@ -43,6 +43,13 @@ module.exports = function(grunt) {
       "<%= djangoApp %>": {
         files: 'less/*.less',
         tasks: 'less:<%= djangoApp %>'
+      },
+      "swig": {
+        files: [
+          'templates/**/*.swig',
+          'templates/**/*.json'
+        ],
+        tasks: 'swig'
       }
     },
     /** grunt-browser-sync
@@ -52,15 +59,17 @@ module.exports = function(grunt) {
      *
      */
     browser_sync: {
-        files: {
-            src : [
-              '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/css/**/*.css',
-              '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/js/**/*.js'
-            ]
-        },
-        options: {
-            watchTask: true
-        }
+      bsFiles: {
+        src : [
+        '<%= WEB_ROOT %>/**/*.html',
+        '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/css/**/*.css',
+        '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/js/**/*.js'
+        ]
+      },
+      options: {
+        host: "127.0.0.1",
+        watchTask: true
+      }
     }
   });
 
