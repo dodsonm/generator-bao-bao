@@ -78,7 +78,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browser-sync');
   grunt.loadNpmTasks('grunt-swig');
 
-  grunt.registerTask('default', ["less", "swig"]);
-  grunt.registerTask('track', ["watch", "browser_sync"]);
+  grunt.registerTask('default', ["swig", "less"]);
+  grunt.registerTask('track', ["browser_sync", "watch"]);
 
 };
