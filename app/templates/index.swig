@@ -59,5 +59,10 @@
             <script src="{{ STATIC_URL }}bower_components/bootstrap/js/collapse.js"></script>
             <script src="{{ STATIC_URL }}bower_components/bootstrap/js/tab.js"></script>
             <!-- endbuild -->
+
+        <!-- browser_sync -->
+        <script src='http://127.0.0.1:3002/socket.io/socket.io.js'></script>
+        <script src='http://127.0.0.1:3003/browser-sync-client.min.js'></script>
+
     </body>
 </html>

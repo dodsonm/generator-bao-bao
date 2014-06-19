@@ -63,7 +63,8 @@ module.exports = function(grunt) {
         src : [
         '<%= WEB_ROOT %>/**/*.html',
         '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/css/**/*.css',
-        '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/js/**/*.js'
+        '<%= WEB_ROOT %><%= STATIC_URL %><%= djangoApp %>/js/**/*.js',
+        '!<%= WEB_ROOT %><%= STATIC_URL %>bower_components/**'
         ]
       },
       options: {
